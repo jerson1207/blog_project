@@ -1,0 +1,21 @@
+<h1>User Profile</h1>
+<p>Email: <%= @user.email %></p>
+<p>Total Articles: <%= @current_user_articles.count %></p>
+
+<div id="articles">
+  <% @current_user_articles.each do |article| %>
+    <div class="card mb-3">
+      <div class="card-header">
+        <%= link_to article.title, user_path(article.id), class: "card-title" %>
+        <h6 class="card-text">Author: <%= article.user.email %></h6>
+      </div>
+      <div class="card-body">
+        <p class="card-text"><%= article.description %></p>
+        <%= link_to "Show this article", article, class:"btn btn-primary" %>
+      </div>
+      <div class="card-footer text-muted">
+        <%= time_ago_in_words(article.created_at) %> ago
+      </div>
+    </div>
+  <% end %>
+</div>

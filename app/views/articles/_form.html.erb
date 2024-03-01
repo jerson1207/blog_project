@@ -1,36 +1,32 @@
-
-
-
-
-
-
-  <%= form_with(model: article) do |form| %>
+<div class="container">
+  <%= form_with(model: article, class: "mt-5") do |form| %>
     <% if article.errors.any? %>
-      <div style="color: red">
-        <h2><%= pluralize(article.errors.count, "error") %> prohibited this article from being saved:</h2>
+      <div class="alert alert-danger" role="alert">
+        <h4 class="alert-heading"><%= pluralize(article.errors.count, "error") %> prohibited this article from being saved:</h4>
 
         <ul>
-          <% article.errors.each do |error| %>
-            <li><%= error.full_message %></li>
+          <% article.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
           <% end %>
         </ul>
       </div>
     <% end %>
+
     <div class="mb-3 row">
-      <div>
-        <%= form.label :title, style: "display: block", class: "col-sm-2 col-form-label" %>
-        <div class="col-sm-10">
-          <%= form.text_field :title, class: "form-control" %>
-        </div>
+      <%= form.label :title, class: "col-sm-2 col-form-label" %>
+      <div class="col-sm-10">
+        <%= form.text_field :title, class: "form-control" %>
       </div>
     </div>
 
-    <div>
-      <%= form.label :description, style: "display: block" %>
-      <%= form.text_area :description %>
+    <div class="mb-3">
+      <%= form.label :description, class: "form-label" %>
+      <%= form.text_area :description, class: "form-control" %>
     </div>
 
-    <div>
-      <%= form.submit %>
+    <div class="mb-3 d-flex justify-content-between">
+      <%= link_to "Cancel", articles_path, class: "btn btn-secondary" %>
+      <%= form.submit "Save", class: "btn btn-primary" %>
     </div>
   <% end %>
+</div>
