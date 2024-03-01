@@ -4,17 +4,18 @@
 <%= button_to "New article", new_article_path, method: :get, class: "btn btn-outline-success" %>
 
 <div id="articles">
-  <% @articles.each do |article| %>
+  <% @current_user_articles.each do |article| %>
     <div class="card text-center">
       <div class="card-header">
         <h5 class="card-title"><%= article.title %></h5>
+        <h6 class="card-text"><%= author(article) %>
       </div>
       <div class="card-body">
         <p class="card-text"><%= article.description %></p>
         <%= link_to "Show this article", article, class:"btn btn-primary" %>
       </div>
       <div class="card-footer text-muted">
-        2 days ago
+        <%= time_ago_in_words(article.created_at) %> ago
       </div>
     </div>
     <p>
@@ -22,5 +23,6 @@
     </p>
   <% end %>
 </div>
+
 
 
