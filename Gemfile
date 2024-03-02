@@ -72,3 +72,4 @@ end
 gem 'faker'
 gem 'devise', '~> 4.2'
 gem 'kaminari'
+gem 'ransack'
